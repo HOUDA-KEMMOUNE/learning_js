@@ -1,0 +1,187 @@
+Create:
+    -- functions.js --
+
+Part 1 — Basic function
+Create:
+
+    function multiply(a, b) {
+        // ...
+    }
+
+It must return the multiplication of a and b.
+
+Then:
+
+    const result = multiply(5, 4);
+    console.log(result);
+
+Expected:
+20
+
+_____________________________________________________
+
+Part 2 — Function + object
+
+Create a function:
+
+    function createPlayer(username, score, online) {
+        // ...
+    }
+
+It must return a player object:
+    ------------------
+    |    username    |
+    |    score       |
+    |    online      |
+    ------------------
+
+Then create:
+    const player1 = createPlayer("Houda", 2000, true);
+
+Print:
+        Houda
+        2000
+        true
+
+_____________________________________________________
+
+Part 3 — Function + array
+
+Create:
+
+    function printNumbers(numbers) {
+        // ...
+    }
+
+It receives an array:
+    const numbers = [10, 20, 30, 40, 50];
+
+and prints every number using a for loop.
+
+Expected:
+    10
+    20
+    30
+    40
+    50
+
+_____________________________________________________
+
+Part 4 — ⭐ Function + array + objects
+
+Create:
+
+    const players = [
+        {
+            username: "Houda",
+            score: 2000,
+            online: true
+        },
+        {
+            username: "Ali",
+            score: 1500,
+            online: false
+        },
+        {
+            username: "Sara",
+            score: 1800,
+            online: true
+        }
+    ];
+
+Now create:
+
+    function printPlayers(players) {
+        // ...
+    }
+
+It should print:
+    Houda - 2000
+    Ali - 1500
+    Sara - 1800
+
+_____________________________________________________
+
+Part 5 — ⭐⭐ Find a player
+
+Create:
+
+    function findPlayer(players, username) {
+        // ...
+    }
+
+It should search the array and return the matching player.
+
+For example:
+    const player = findPlayer(players, "Sara");
+    console.log(player);
+
+Expected:
+    {
+        username: "Sara",
+        score: 1800,
+        online: true
+    }
+
+Then:
+    console.log(player.score);
+
+should give:
+    1800
+
+If the player doesn't exist:
+    const player = findPlayer(players, "Youssef");
+    console.log(player);
+
+return:
+    null
+
+_____________________________________________________
+
+Part 6 — ⭐⭐⭐ Modify a player
+
+Create:
+
+    function addScore(players, username, points) {
+        // ...
+    }
+
+For example:
+    addScore(players, "Houda", 500);
+
+Now Houda should have:
+    2500
+
+And:
+    addScore(players, "Ali", 300);
+
+Ali should have:
+    1800
+
+The structure you're practicing
+
+By the end, you'll have:
+
+                    FUNCTIONS
+                        │
+              ┌─────────┼─────────┐
+              │         │         │
+          parameters   return   calls
+              │
+              ▼
+          ┌───────────────┐
+          │               │
+        ARRAYS          OBJECTS
+          │               │
+          └───────┬───────┘
+                  │
+                  ▼
+            REAL PROGRAM
+
+And the most important pattern to understand is this:
+
+        function printPlayers(players) {
+            for (let i = 0; i < players.length; i++) {
+                console.log(players[i].username);
+            }
+        }

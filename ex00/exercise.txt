@@ -1,0 +1,69 @@
+Create a file:
+    --objects.js--
+    
+And create an object representing a Pong player.
+It should have:
+    ---------------
+    |   username  |
+    |   age       |
+    |   score     |
+    |   online    |
+    |   country   |
+    |   friends   |
+    ---------------
+
+For example, the structure should be something like:
+
+    const player = {
+        // YOUR CODE
+    };
+
+Your tasks:
+
+1. Print the player's username.
+
+Expected:
+    --Houda--
+
+2. Print the player's score.
+
+3. Change the score to 2000.
+
+4. Add a new property:
+    -- level: 10 --
+
+5. Set online to false.
+
+6. Add a method called sayHello() that prints:
+    -- Hello, my name is Houda --
+Use this.username inside the method.
+
+7. Add an address object:
+    ---------------
+    |   city      |
+    |   country   |
+    ---------------
+Then print the city using:
+    -- player.address.city --
+
+8. Add three friends as an array:
+    -------------
+    |   Ali     |
+    |   Sara    |
+    |   Youssef |
+    -------------
+Then print the second friend.
+
+⭐ Bonus
+Create an array containing 3 player objects:
+
+    const players = [
+        // player 1
+        // player 2
+        // player 3
+    ];
+
+Then use a for loop to print:
+    Houda - 2000
+    Ali - 1500
+    Sara - 1800
