@@ -1,0 +1,157 @@
+Create:
+    -- destructuring.js --
+
+and use this data:
+    const players = [
+        {
+            username: "Houda",
+            age: 19,
+            score: 2000,
+            online: true,
+            friends: ["Ali", "Sara"],
+            address: {
+                city: "Benguerir",
+                country: "Morocco"
+            }
+        },
+
+        {
+            username: "Ali",
+            age: 21,
+            score: 1500,
+            online: false,
+            friends: ["Houda"],
+            address: {
+                city: "Marrakech",
+                country: "Morocco"
+            }
+        },
+
+        {
+            username: "Sara",
+            age: 20,
+            score: 1800,
+            online: true,
+            friends: ["Houda", "Ali"],
+            address: {
+                city: "Casablanca",
+                country: "Morocco"
+            }
+        }
+    ];
+
+
+Part 1 — Object destructuring
+
+Take the first player and destructure:
+    ------------------
+    |     username   |
+    |     age        |
+    |     score      |
+    |     online     |
+    ------------------
+
+Then print them.
+
+_______________________________________________________________________
+
+Part 2 — Nested destructuring
+
+From the first player, get:
+    --------------
+    |    city    |
+    |    country |
+    --------------
+
+using destructuring.
+
+Try to avoid:
+    players[0].address.city
+
+I want you to practice destructuring.
+
+_______________________________________________________________________
+
+Part 3 — Array destructuring
+
+Take the friends of Houda and destructure them:
+    firstFriend
+    secondFriend
+
+Then print:
+    Ali
+    Sara
+
+_______________________________________________________________________
+
+Part 4 — Function + object destructuring
+
+Create:
+    const printPlayer = (...) => {
+        ...
+    };
+
+The function should receive a player object and print:
+        Houda - 2000 points
+
+But inside the function, use destructuring instead of:
+        player.username
+        player.score
+
+_______________________________________________________________________
+
+Part 5 — map() + destructuring
+
+Create:
+    const getUsernames = ...
+
+It should return:
+    ["Houda", "Ali", "Sara"]
+
+Use:
+    -> an arrow function
+    -> .map()
+    -> destructuring
+
+_______________________________________________________________________
+
+Part 6 — filter() + destructuring
+
+Create:
+    const getOnlinePlayers = ...
+
+It should return the player objects whose online property is true.
+
+Expected result:
+    Houda
+    Sara
+
+Use:
+    -> .filter()
+    -> arrow function
+    -> destructuring
+
+_______________________________________________________________________
+
+Part 7 — The final challenge 🔥
+
+Create:
+    const getOnlineUsernames = ...
+
+It should return:
+    ["Houda", "Sara"]
+
+Use both:
+    -> filter()
+    -> map()
+
+and use destructuring in the callbacks.
+
+So the general idea should be:
+    players
+       ↓
+    filter online players
+       ↓
+    map their usernames
+       ↓
+    ["Houda", "Sara"]
