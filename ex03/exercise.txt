@@ -1,0 +1,172 @@
+Create:
+    -- arrow.js --
+
+Part 1 — Basic arrow functions
+
+1. Create:
+    const subtract = ...
+
+It should receive two numbers and return their difference.
+
+Test:
+    console.log(subtract(10, 3));
+
+Expected:
+    7
+
+2. Create:
+    const isEven = ...
+
+It receives a number and returns:
+
+true
+    if it's even and:
+
+false
+    if it's odd.
+
+Test:
+    console.log(isEven(10));
+    console.log(isEven(7));
+
+Expected:
+    true
+    false
+
+________________________________________________________________________________
+
+Part 2 — Arrow function + array
+
+Create:
+    const numbers = [1, 2, 3, 4, 5];
+
+Create an arrow function called doubleNumbers.
+
+It should produce:
+    [2, 4, 6, 8, 10]
+
+Hint: You're going to need .map().
+
+Try to figure out:
+    numbers.map( ??? );
+
+________________________________________________________________________________
+
+Part 3 — Array + objects
+
+Create:
+    const players = [
+        {
+            username: "Houda",
+            score: 2000,
+            online: true
+        },
+        {
+            username: "Ali",
+            score: 1500,
+            online: false
+        },
+        {
+            username: "Sara",
+            score: 1800,
+            online: true
+        }
+    ];
+
+Create an arrow function called getUsernames.
+
+It receives players and returns:
+    ["Houda", "Ali", "Sara"]
+
+So you should be able to do:
+    const usernames = getUsernames(players);
+    console.log(usernames);
+
+________________________________________________________________________________
+
+Part 4 — ⭐ Get the scores
+
+Create:
+    const getScores = ...
+
+It receives the players array and returns:
+    [2000, 1500, 1800]
+
+Again, use an arrow function + .map().
+
+________________________________________________________________________________
+
+Part 5 — ⭐⭐ Filter online players
+
+Now things get more interesting.
+
+Using the same players array, create:
+    const getOnlinePlayers = ...
+
+It should return only the players whose:
+    online === true
+
+Expected:
+    [
+        {
+            username: "Houda",
+            score: 2000,
+            online: true
+        },
+        {
+            username: "Sara",
+            score: 1800,
+            online: true
+        }
+    ]
+
+Hint: You're going to discover another array method:
+        .filter()
+
+The idea is:
+
+        players
+           ↓
+        filter()
+           ↓
+        "Keep this player?"
+           ↓
+        YES → keep
+        NO  → remove
+
+________________________________________________________________________________
+
+Part 6 — ⭐⭐⭐ The final challenge
+
+Create:
+    const getPlayerInfo = ...
+
+It receives the players array and produces:
+    [
+        "Houda has 2000 points",
+        "Ali has 1500 points",
+        "Sara has 1800 points"
+    ]
+
+
+You'll need to combine:
+    array
+       +
+    objects
+       +
+    arrow function
+       +
+    map()
+
+
+The conceptual flow is:
+    players
+       ↓
+    map()
+       ↓
+    player object
+       ↓
+    player.username
+    player.score
+       ↓
+    create a string
