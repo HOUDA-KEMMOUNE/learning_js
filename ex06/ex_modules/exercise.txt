@@ -1,0 +1,179 @@
+Create:
+    ex_modules/
+    │
+    ├── package.json
+    ├── players.js
+    ├── playerFunctions.js
+    └── app.js
+
+Step 1 — package.json
+
+Put:
+    {
+        "type": "module"
+    }
+
+____________________________________________________________________________
+
+Step 2 — players.js
+
+Create and export this array:
+
+const players = [
+    {
+        username: "Houda",
+        age: 19,
+        score: 2000,
+        online: true,
+        friends: ["Ali", "Sara"],
+        address: {
+            city: "Benguerir",
+            country: "Morocco"
+        }
+    },
+
+    {
+        username: "Ali",
+        age: 21,
+        score: 1500,
+        online: false,
+        friends: ["Houda"],
+        address: {
+            city: "Marrakech",
+            country: "Morocco"
+        }
+    },
+
+    {
+        username: "Sara",
+        age: 20,
+        score: 1800,
+        online: true,
+        friends: ["Houda", "Ali"],
+        address: {
+            city: "Casablanca",
+            country: "Morocco"
+        }
+    }
+];
+
+Export it.
+
+Don't export it by default yet. Practice named exports.
+
+____________________________________________________________________________
+
+Step 3 — playerFunctions.js
+
+Create and export these functions.
+
+=> Function 1
+    getUsernames(players)
+
+Should return:
+    ["Houda", "Ali", "Sara"]
+
+Requirements:
+    -> arrow function
+    -> map()
+    -> destructuring
+
+
+=> Function 2
+    getOnlinePlayers(players)
+
+Should return:
+    Houda
+    Sara
+
+Requirements:
+    -> arrow function
+    -> filter()
+    -> destructuring
+
+
+=> Function 3
+    addBonus(players)
+
+Every player gets +500 points.
+
+Expected scores:
+    Houda → 2500
+    Ali   → 2000
+    Sara  → 2300
+
+Requirements:
+    -> arrow function
+    -> map()
+    -> object spread
+    -> do not modify the original players
+
+
+=> Function 4 🔥
+
+Create:
+    getPlayerInfo(players)
+
+It should return:
+    [
+        "Houda - 2000 points - Benguerir",
+        "Ali - 1500 points - Marrakech",
+        "Sara - 1800 points - Casablanca"
+    ]
+
+Requirements:
+    -> arrow function
+    -> map()
+    -> destructuring
+    -> nested object destructuring
+
+Hint:
+    ({ username, score, address: { city } })
+
+____________________________________________________________________________
+
+Step 4 — app.js
+
+Import:
+    -------------------------
+    |    players            |
+    |    getUsernames       |
+    |    getOnlinePlayers   |
+    |    addBonus           |
+    |    getPlayerInfo      |
+    -------------------------
+
+Then test all of them.
+
+For example:
+    console.log(getUsernames(players));
+
+Then:
+    console.log(getOnlinePlayers(players));
+
+Then:
+    console.log(addBonus(players));
+
+And:
+    console.log(getPlayerInfo(players));
+
+____________________________________________________________________________
+
+🔥 Final challenge
+
+After everything works, add this function:
+    getOnlineUsernames(players)
+
+It must return:
+    ["Houda", "Sara"]
+
+Requirements:
+    filter()
+          ↓
+    map()
+          ↓
+    destructuring
+          ↓
+    arrow functions
+
+Then export it from playerFunctions.js and import it into app.js.
