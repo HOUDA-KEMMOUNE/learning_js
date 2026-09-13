@@ -1,0 +1,307 @@
+Create:
+    callback-ex/
+    │
+    ├── package.json
+    ├── players.js
+    ├── playerFunctions.js
+    └── app.js
+    players.js
+
+Use:
+    const players = [
+        {
+            username: "Houda",
+            age: 19,
+            score: 2000,
+            online: true,
+            friends: ["Ali", "Sara"],
+            address: {
+                city: "Benguerir",
+                country: "Morocco"
+            }
+        },
+
+        {
+            username: "Ali",
+            age: 21,
+            score: 1500,
+            online: false,
+            friends: ["Houda"],
+            address: {
+                city: "Marrakech",
+                country: "Morocco"
+            }
+        },
+
+        {
+            username: "Sara",
+            age: 20,
+            score: 1800,
+            online: true,
+            friends: ["Houda", "Ali"],
+            address: {
+                city: "Casablanca",
+                country: "Morocco"
+            }
+        }
+    ];
+
+Export it using a named export.
+________________________________________________________________________
+
+
+Part 1 — Create your own callback function
+
+Create:
+    const executeCallback = (callback) => {
+        callback();
+    };
+
+Then create:
+    const sayHello = () => {
+        console.log("Hello Houda!");
+    };
+
+Pass sayHello to executeCallback.
+
+Expected:
+    -- Hello Houda! --
+
+Important: don't do:
+    executeCallback(sayHello());
+
+________________________________________________________________________
+
+Part 2 — Callback with an argument
+
+Create:
+    const executeWithPlayer = (player, callback) => {
+        callback(player);
+    };
+
+Then:
+    const printPlayer = (player) => {
+        console.log(player.username);
+    };
+
+Call:
+    executeWithPlayer(players[0], printPlayer);
+
+Expected:
+    -- Houda --
+
+Here you should be able to explain:
+    player
+       ↓
+    executeWithPlayer
+       ↓
+    callback(player)
+       ↓
+    printPlayer(player)
+
+________________________________________________________________________
+
+Part 3 — map() callback + destructuring
+
+Create:
+    const getUsernames = ...
+
+Return:
+    ["Houda", "Ali", "Sara"]
+
+Requirements:
+    -> arrow function
+    -> .map()
+    -> callback
+    -> destructuring
+
+________________________________________________________________________
+
+Part 4 — filter() callback + destructuring
+
+Create:
+    const getOnlinePlayers = ...
+
+Return the online player objects.
+
+Expected:
+    Houda
+    Sara
+
+Requirements:
+    -> .filter()
+    -> callback
+    -> destructuring
+
+________________________________________________________________________
+
+Part 5 — map() + spread
+
+Create:
+    const addBonus = ...
+
+Add 500 points to every player.
+
+Expected:
+    Houda → 2500
+    Ali   → 2000
+    Sara  → 2300
+
+Requirements:
+    -> .map()
+    -> callback
+    -> object spread
+    -> don't modify the original array
+
+________________________________________________________________________
+
+Part 6 — filter() + map() + destructuring
+
+Create:
+    const getOnlineUsernames = ...
+
+Expected:
+    ["Houda", "Sara"]
+
+Requirements:
+    filter()
+       ↓
+    map()
+
+    and both callbacks should use destructuring.
+
+________________________________________________________________________
+
+Part 7 — Nested destructuring + map
+
+Create:
+    const getCities = ...
+
+Expected:
+    ["Benguerir", "Marrakech", "Casablanca"]
+
+Use:
+    -- map() --
+
+and nested destructuring.
+
+Hint:
+    ({ address: { city } })
+
+________________________________________________________________________
+
+Part 8 — Create your own higher-order function 🔥
+
+This is the most important callback exercise.
+
+Create:
+    const processPlayers = (players, callback) => {
+        // ...
+    };
+
+It should receive:
+    1. the players array
+    2. a callback
+
+Inside processPlayers, use .map() and call the callback for each player.
+
+Then create:
+    const getUsername = ({ username }) => {
+        return username;
+    };
+
+And:
+    const getScore = ({ score }) => {
+        return score;
+    };
+
+Then:
+    console.log(processPlayers(players, getUsername));
+
+should produce:
+    ["Houda", "Ali", "Sara"]
+
+And:
+    console.log(processPlayers(players, getScore));
+
+should produce:
+    [2000, 1500, 1800]
+
+The important concept
+
+You have now created your own function that behaves somewhat like:
+    -- map() --
+
+because you are doing:
+    processPlayers
+          │
+          │ receives callback
+          ↓
+        players
+          │
+          ↓
+        map()
+          │
+          ├── callback(Houda)
+          ├── callback(Ali)
+          └── callback(Sara)
+          │
+          ↓
+       new array
+
+That's a higher-order function: a function that receives another function as an argument.
+
+________________________________________________________________________
+
+Part 9 — Modules 🔥
+
+Export from playerFunctions.js:
+    --------------------------
+    |    getUsernames        |
+    |    getOnlinePlayers    |
+    |    addBonus            |
+    |    getOnlineUsernames  |
+    |    getCities           |
+    |    processPlayers      |
+    --------------------------
+
+Then import them into app.js.
+
+So now your project combines:
+
+                 MODULES
+              import/export
+                    │
+                    ↓
+                FUNCTIONS
+                    │
+                    ↓
+              ARROW FUNCTIONS
+                    │
+                    ↓
+                CALLBACKS
+                    │
+          ┌─────────┼─────────┐
+          ↓         ↓         ↓
+        map()    filter()   forEach()
+          │         │
+          ↓         ↓
+      ARRAYS ←→ OBJECTS
+          │         │
+          └────┬────┘
+               ↓
+        DESTRUCTURING
+               │
+               ↓
+             SPREAD
+
+You're now starting to learn the core functional style of JavaScript.
+
+And one last thing: don't rush to memorize the term "higher-order function."
+The important thing is that you understand the mechanism:
+    someFunction(anotherFunction);
+
+means:
+    "I'm giving this function to another function."
+
+Then the receiving function decides when and how to call it.
