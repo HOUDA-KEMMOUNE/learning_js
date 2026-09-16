@@ -1,50 +1,98 @@
 import {players} from "./players.js";
 
 // PART 1
-console.log("---------------- Part 1 ---------------");
-
-const	executeCallBack = (callback) =>
+export const	executeCallBack = (callback) =>
 {
 	callback();
 };
 
-const	sayHello = () =>
+export const	sayHello = () =>
 {
 	console.log("Hello Houda!");
 };
 
-executeCallBack(sayHello);
-
-console.log("---------------------------------------");
+// --------------------------------------------------------------
 
 // PART 2
-console.log("---------------- Part 2 ---------------");
-
-const	executeWithPlayer = (player, callback) =>
+export const	executeWithPlayer = (player, callback) =>
 {
 	callback(player);
 };
 
-const	printPlayer = (player) =>
+export const	printPlayer = (player) =>
 {
 	console.log(player.username);
 }
 
-executeWithPlayer(players[0], printPlayer);
-
-console.log("---------------------------------------");
+//---------------------------------------------------------------
 
 // PART 3
-console.log("---------------- Part 3 ---------------");
-
-const	getUsernames = (players, callback) =>
+export const	getUsernames = (players, callback) =>
 {
 	const	usernames = players.map(callback);
 	return (usernames);
 }
 
-const	helper = ({username}) => username;
+export const	getUsernames_helper = ({username}) => username;
 
-console.log(getUsernames(players, helper));
+//------------------------------------------------------------
 
-console.log("---------------------------------------");
+// PART 4
+export const	getOnlinePlayers = (players, callback) =>
+{
+	const	onlinePlayers = players.filter(callback);
+	return (onlinePlayers);
+}
+
+export const	getOnlinePlayers_helper = ({online}) => online;
+//--------------------------------------------------------------------
+
+// PART 5
+export const	addBonus = (players, callback) =>
+{
+	const	add_points = players.map(callback);
+	return (add_points);
+}	
+
+export const	addBonus_helper = (player) =>
+{
+	return {
+		...player,
+		score: player.score + 500
+	};
+}
+//-----------------------------------------------------------
+
+// PART 6
+export const	getOnlineUsernames = (players, filter_callback, map_callback) =>
+{
+	const	online_users = players.filter(filter_callback);
+	const	names = online_users.map(map_callback);
+	return (names);
+}
+
+export const	filter_helper = ({online}) => online;
+export const	map_helper = ({username}) => username;
+
+//---------------------------------------------------------------
+
+// PART 7
+export const	getCities = (players, callback) =>
+{
+	const	cities = players.map(callback);
+	return (cities);
+}
+
+export const	getCities_helper = ({ address: {city} }) => city;
+
+//-----------------------------------------------------------------
+
+// PART 8
+export const	processPlayers = (players, callback) =>
+{
+	const	process_players = players.map(callback);
+	return (process_players);
+}
+
+export const	getUsername = ({username}) => username;
+export const	getScore = ({score}) => score;
