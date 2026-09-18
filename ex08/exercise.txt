@@ -1,0 +1,215 @@
+Exercise 1 — Basic try/catch
+
+Write:
+    const number = 10;
+
+Then intentionally do something invalid with it that causes a TypeError.
+
+Put it inside:
+    try {
+        // ...
+    }
+    catch (error) {
+        // ...
+    }
+
+Print:
+    An error occurred
+
+Then print the actual error message.
+
+____________________________________________________________________________________________________________
+
+Exercise 2 — throw
+
+Create:
+    const checkAge = (age) => {
+        // ...
+    };
+
+Rules:
+
+age < 0
+    throw Error("Invalid age")
+
+age >= 18
+    return "Access granted"
+
+age < 18
+    return "Access denied"
+
+Test:
+    console.log(checkAge(19));
+    console.log(checkAge(15));
+
+Then:
+    try {
+        console.log(checkAge(-5));
+    }
+    catch (error) {
+        console.log(error.message);
+    }
+
+Expected:
+    -> Access granted
+    -> Access denied
+    -> Invalid age
+
+____________________________________________________________________________________________________________
+
+Exercise 3 — finally
+
+Use your checkAge().
+
+Write:
+    try {
+        console.log(checkAge(-5));
+    }
+    catch (error) {
+        console.log(error.message);
+    }
+    finally {
+        console.log("Finished checking age");
+    }
+
+Expected:
+    Invalid age
+    Finished checking age
+
+Then change -5 to 20.
+
+Expected:
+    Access granted
+    Finished checking age
+
+Notice that finally runs in both cases.
+
+____________________________________________________________________________________________________________
+
+Exercise 4 — Objects + destructuring + exceptions
+
+Use your players:
+    const getPlayer = (players, username) => {
+        // ...
+    };
+
+Find the player whose username matches.
+
+For example:
+    getPlayer(players, "Houda");
+
+should return:
+    {
+        username: "Houda",
+        score: 2000,
+        ...
+    }
+
+But if the player doesn't exist:
+    getPlayer(players, "Yassine");
+
+throw:
+    new Error("Player not found");
+
+Then handle it:
+    try {
+        const player = getPlayer(players, "Yassine");
+        console.log(player);
+    }
+    catch (error) {
+        console.log(error.message);
+    }
+
+Requirements
+
+Use:
+    -> arrow function
+    -> .find()
+    -> destructuring
+    -> throw
+    -> try/catch
+
+____________________________________________________________________________________________________________
+
+Exercise 5 — Map + callback + exceptions 🔥
+
+Create:
+    const getScores = (players) => {
+        return players.map(({ score }) => score);
+    };
+
+You already know how to do this.
+
+But now add validation:
+    If players isn't an array:
+        getScores("hello");
+
+throw:
+    Players must be an array
+
+Hint:
+    Array.isArray(players)
+
+Then:
+    try {
+        console.log(getScores("hello"));
+    }
+    catch (error) {
+        console.log(error.message);
+    }
+
+____________________________________________________________________________________________________________
+
+
+🔥 Exercise 6 — The important one
+
+Create:
+    const processPlayer = (player, callback) => {
+        // ...
+    };
+
+It should:
+    -> Receive a player.
+    -> Receive a callback.
+    -> Validate the player.
+    -> Throw an error if the player is invalid.
+    -> Otherwise call the callback.
+
+For example:
+    const getUsername = ({ username }) => {
+        return username;
+    };
+
+Then:
+    const result = processPlayer(players[0], getUsername);
+    console.log(result);
+
+Expected:
+    Houda
+
+And if you do something invalid:
+    processPlayer(null, getUsername);
+
+it should throw an error.
+
+Handle it with:
+    try {
+        const result = processPlayer(null, getUsername);
+        console.log(result);
+    }
+    catch (error) {
+        console.log(error.message);
+    }
+
+This combines:
+    function
+       ↓
+    callback
+       ↓
+    objects
+       ↓
+    destructuring
+       ↓
+    exceptions
+       ↓
+    try/catch
