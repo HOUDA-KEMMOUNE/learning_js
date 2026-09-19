@@ -113,6 +113,84 @@ const	checkOnline = (player) =>
 		});
 }
 
-// getPlayer("Houda")
-// 	.then( () )
+getPlayer("Ali")
+	.then( (player) =>
+	{
+		const	{username, score} = player;
+
+		console.log("Username: ", username);
+		console.log("Score: ", score);
+
+		return (player);
+	} )
+	.then( (player) =>
+	{
+		return {
+			...player, score: player.score + 500
+		};
+	} )
+	.then( (newPlayer) => 
+	{
+		console.log(newPlayer);
+
+		checkOnline(newPlayer)
+			.then( (result) =>
+			{
+				console.log(result);
+				console.log("--------------------------------------------");
+			} )
+			.catch( (error) =>
+			{
+				console.log(error.message);
+				console.log("--------------------------------------------");
+			} );
+	})
+	.catch( (error) => 
+	{
+		console.log(error.message);
+		console.log("--------------------------------------------");
+	});
+
+//------------------------------------------------------------------------------
+
+// PART 6
+
+const	processPlayer = (username, callback) =>
+{
+	getPlayer(username)
+		.then( (player) =>
+		{
+			const	{username, score} = player;
+
+			console.log("Username: ", username);
+			console.log("Score: ", score);
+
+			return  (player);
+		} )
+		.then( (player) =>
+		{
+			return {
+				...player,
+				score: player.score + 500
+			};
+		})
+		.then( (newPlayer) =>
+		{
+			console.log("New update of the player: ");
+			console.log(newPlayer);
+			callback(newPlayer);
+		})
+		.catch( (error) =>
+		{
+			console.log(error.message);
+		})
+}
+
+const getPlayerInfo = ({ username, score }) => 
+{
+    return `${username} has ${score} points`;
+};
+
+processPlayer("Houda", getPlayerInfo);
+
 
