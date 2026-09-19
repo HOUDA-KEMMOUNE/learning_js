@@ -1,0 +1,191 @@
+Create:
+    promise.js
+
+You're going to build a small player API simulation.
+    Data
+
+Create this array:
+    const players = [
+        {
+            username: "Houda",
+            age: 21,
+            score: 2000,
+            online: true
+        },
+        {
+            username: "Ali",
+            age: 22,
+            score: 1500,
+            online: false
+        },
+        {
+            username: "Sara",
+            age: 20,
+            score: 1800,
+            online: true
+        }
+    ];
+
+__________________________________________________________________________________________
+
+Part 1 — Create getPlayer()
+
+Create:
+    const getPlayer = (username) => {
+
+    };
+
+It must return a Promise.
+
+Simulate a server taking 1 second:
+    getPlayer("Houda")
+           ↓
+       wait 1 second
+           ↓
+     find Houda
+           ↓
+     resolve(player)
+
+If the player doesn't exist:
+    reject(new Error("Player not found"));
+
+__________________________________________________________________________________________
+
+Part 2 — Use .then() and .catch()
+
+Call:
+    getPlayer("Houda")
+
+and print:
+    Username: Houda
+    Score: 2000
+
+Use destructuring:
+    .then(({ username, score }) => {
+
+    });
+
+And handle errors with:
+    .catch((error) => {
+
+    });
+
+__________________________________________________________________________________________
+
+Part 3 — Test an invalid player
+
+Try:
+    getPlayer("Bob")
+
+You should get:
+    Player not found
+
+__________________________________________________________________________________________
+
+Part 4 — Add a bonus
+
+Create another .then() that adds 500 points.
+
+Don't modify the original object.
+
+Use spread:
+    {
+        ...player,
+        score: player.score + 500
+    }
+
+So:
+    Houda
+    2000
+       ↓
+    +500
+       ↓
+    2500
+
+__________________________________________________________________________________________
+
+Part 5 — Check if the player is online
+
+Create a function:
+    const checkOnline = (player) => {
+
+    };
+
+It should return a Promise.
+
+If:
+    player.online === true
+
+resolve:
+    "Player is online"
+
+Otherwise reject:
+    "Player is offline"
+
+Then chain it:
+
+    getPlayer()
+         ↓
+    .then()
+         ↓
+    add bonus
+         ↓
+    .then()
+         ↓
+    check online
+         ↓
+    .then()
+         ↓
+    catch()
+
+__________________________________________________________________________________________
+
+Part 6 — Final challenge
+
+Create:
+    const processPlayer = (username, callback) => {
+
+    };
+
+It should:
+    -> Get the player asynchronously.
+    -> Add 500 points.
+    -> Pass the resulting player to callback.
+    -> Return the result.
+    -> Handle errors.
+
+Then create:
+    const getPlayerInfo = ({ username, score }) => {
+        return `${username} has ${score} points`;
+    };
+
+And:
+    processPlayer("Houda", getPlayerInfo)
+
+should eventually produce:
+    Houda has 2500 points
+
+__________________________________________________________________________________________
+
+⚠️ One rule for this exercise
+
+Don't use async/await yet.
+
+I want you to first become comfortable with:
+    -> new Promise()
+    -> resolve()
+    -> reject()
+    -> .then()
+    -> .catch()
+    -> .finally()
+
+and especially:
+    Promise
+       ↓
+    .then()
+       ↓
+    .then()
+       ↓
+    .then()
+       ↓
+    .catch()
