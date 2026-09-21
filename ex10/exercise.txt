@@ -1,0 +1,434 @@
+Create:
+    async.js
+
+Data
+
+Start with:
+    const players = [
+        {
+            username: "Houda",
+            age: 21,
+            score: 2000,
+            online: true,
+            friends: ["Ali", "Sara"]
+        },
+        {
+            username: "Ali",
+            age: 22,
+            score: 1500,
+            online: false,
+            friends: ["Houda"]
+        },
+        {
+            username: "Sara",
+            age: 20,
+            score: 1800,
+            online: true,
+            friends: ["Houda"]
+        }
+    ];
+
+This uses:
+    -> array
+    -> objects
+    -> nested array
+    -> strings
+    -> numbers
+    -> booleans
+
+___________________________________________________________________________________
+
+Part 1 — getPlayer()
+
+You already know how to do this.
+
+Create:
+    getPlayer(username)
+
+It must:
+
+    -> Return a Promise.
+    -> Wait 1 second using setTimeout.
+    -> Search the array with .find().
+    -> If the player exists → resolve(player).
+    -> Otherwise → reject(new Error("Player not found")).
+
+So conceptually:
+    getPlayer("Houda")
+           ↓
+        1 second
+           ↓
+        players.find()
+           ↓
+       ┌────┴────┐
+     exists     doesn't
+       ↓           ↓
+    resolve      reject
+
+___________________________________________________________________________________
+
+Part 2 — checkOnline()
+
+Create:
+    checkOnline(player)
+
+It must return a Promise.
+
+If:
+    player.online === true
+
+resolve:
+    "Player is online"
+
+Otherwise reject with an Error.
+
+You've already done this part.
+
+___________________________________________________________________________________
+
+Part 3 — Create processPlayer()
+
+Now the important part.
+
+Create:
+    processPlayer(username)
+
+and make it an:
+    async function
+
+Inside it:
+
+------------------------------------
+
+Step A
+
+Get the player:
+    await getPlayer(username)
+
+Store the result in a variable.
+
+------------------------------------
+
+Step B
+
+Use destructuring to get:
+    username
+    score
+
+and print:
+    Username: ...
+    Score: ...
+
+Don't forget: you still have the whole player object somewhere because you'll need it later.
+
+------------------------------------
+
+Step C — Add the bonus
+
+Create a new player object.
+
+Do not modify the original.
+
+Use the spread operator.
+
+The new player should have:
+    old properties
+    +
+    score increased by 500
+
+So conceptually:
+    old player
+         ↓
+    spread
+         ↓
+    new player
+         ↓
+    score + 500
+
+------------------------------------
+
+Step D — Check online
+
+Take your new player and:
+    await checkOnline(newPlayer)
+
+Store the result.
+
+Then print the result.
+
+------------------------------------
+
+Step E — Error handling
+
+Everything that can fail should be handled with:
+    try
+       ↓
+    ...
+    catch
+       ↓
+    error.message
+
+Remember:
+    getPlayer fails
+          ↓
+    Promise rejected
+          ↓
+    await
+          ↓
+    throws into catch
+
+This is a VERY important connection.
+
+___________________________________________________________________________________
+
+Part 4 — Create getOnlinePlayers()
+
+Now combine your Promise knowledge with arrays.
+
+Create an async function:
+    getOnlinePlayers()
+
+It should:
+    -> Wait for some asynchronous operation that returns the players array.
+    -> Use .filter().
+    -> Keep only online players.
+    -> Return the resulting array.
+
+Then print their usernames using .map().
+
+So the flow is:
+    await getPlayers()
+           ↓
+        players
+           ↓
+       .filter()
+           ↓
+    online players
+           ↓
+        .map()
+           ↓
+    usernames
+
+This combines:
+    -> Promise
+    -> async
+    -> await
+    -> arrays
+    -> objects
+    -> filter
+    -> map
+    -> arrow functions
+    -> destructuring
+
+___________________________________________________________________________________
+
+Part 5 — processPlayers()
+
+Now the final challenge.
+
+Create:
+    processPlayers()
+
+It should:
+    -> Get all players asynchronously.
+    -> Filter online players.
+    -> Add 500 points to each online player.
+    -> Create new objects using spread.
+    -> Return the new array.
+    -> Print the result.
+
+Your pipeline should mentally look like:
+
+              await getPlayers()
+                       ↓
+                     array
+                       ↓
+                    filter
+                       ↓
+                online players
+                       ↓
+                     map
+                       ↓
+              create new objects
+                       ↓
+                  spread + bonus
+                       ↓
+                  new array
+                       ↓
+                    return
+
+___________________________________________________________________________________
+
+Part 6 — Final boss 👑
+
+Create:
+    async function main()
+
+Inside main():
+    1. Get Houda
+           ↓
+    2. Add 500 points
+           ↓
+    3. Check if she's online
+           ↓
+    4. Get all online players
+           ↓
+    5. Add 500 bonus to every online player
+           ↓
+    6. Print final information
+
+Wrap everything in:
+    try
+       ↓
+    operations
+       ↓
+    catch
+
+Then call:
+    main()
+
+___________________________________________________________________________________
+
+⚠️ One important restriction
+
+For the main solution:
+
+Don't use .then() / .catch() for the asynchronous flow.
+
+Use:
+    -> async
+    -> await
+    -> try
+    -> catch
+
+But you are still absolutely allowed to use:
+    -> map()
+    -> filter()
+    -> find()
+
+because those are array methods, not Promise handling.
+
+___________________________________________________________________________________
+
+Your cheat sheet
+
+Keep this next to you while doing the exercise:
+
+    PROMISE
+    ─────────────────────────────
+    
+    new Promise((resolve, reject) => {
+        ...
+    })
+    
+    resolve(value) → success
+    reject(error)  → failure
+    
+    
+    PROMISE STYLE
+    ─────────────────────────────
+    
+    promise
+        .then(result => ...)
+        .catch(error => ...)
+    
+    
+    ASYNC/AWAIT
+    ─────────────────────────────
+    
+    async function test() {
+    
+        try {
+        
+            const result = await promise;
+    
+        }
+        catch (error) {
+        
+            console.log(error.message);
+    
+        }
+    }
+    
+    
+    IMPORTANT
+    ─────────────────────────────
+    
+    async function
+           ↓
+    always returns a Promise
+    
+    await promise
+           ↓
+    get the fulfilled value
+    
+    rejected Promise
+           ↓
+    await
+           ↓
+    caught by try/catch
+    
+    
+    DATA
+    ─────────────────────────────
+    
+    object       → { ... }
+    array        → [ ... ]
+    
+    destructuring
+    const { username, score } = player;
+    
+    array destructuring
+    const [first, second] = players;
+    
+    
+    SPREAD
+    ─────────────────────────────
+    
+    const copy = { ...player };
+    
+    const updated = {
+        ...player,
+        score: player.score + 500
+    };
+    
+    
+    ARRAY METHODS
+    ─────────────────────────────
+    
+    map()    → transform every element
+    filter() → keep elements that satisfy condition
+    find()   → find one element
+    forEach() → execute something for every element
+    
+    
+    FUNCTIONS
+    ─────────────────────────────
+    
+    function add(a, b) {
+        return a + b;
+    }
+    
+    const add = (a, b) => a + b;
+    
+    
+    CALLBACK
+    ─────────────────────────────
+    
+    function receives another function
+    
+    map(player => ...)
+    filter(player => ...)
+    
+    
+    ERRORS
+    ─────────────────────────────
+    
+    throw new Error("message");
+    
+    try {
+        ...
+    }
+    catch (error) {
+        console.log(error.message);
+    }
