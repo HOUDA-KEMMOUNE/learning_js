@@ -1,5 +1,3 @@
-const { reject } = require("async");
-
 const	players =
 [
 	{
@@ -48,9 +46,10 @@ const	getPlayer = (username) =>
 // PART 2
 // ------------------------------------------------------------
 
+
 const	checkOnlinePlayer = (player) =>
 {
-	return new Promise( () =>
+	return new Promise( (resolve, reject) =>
 	{
 
 		if ( player.online )
@@ -61,25 +60,111 @@ const	checkOnlinePlayer = (player) =>
 	} );
 }
 
-getPlayer("Houda")
-	.then( (player) =>
+// PART 3
+// ------------------------------------------------------------
+
+const	processPlayer = async (username) =>
+{
+	try
 	{
-		console.log(player);
-		return player;
-	} )
-	.then( (player) =>
+		const	player = await getPlayer(username);
+
+		const	{username: user_name, score} = player;
+
+		console.log("Username: ", user_name, "\nScore: ", score);		
+
+		const	newPlayer = {
+			...player,
+			score: score + 500
+		};
+
+		const	check_online = await checkOnlinePlayer(newPlayer);
+		console.log( check_online );
+
+	}
+	catch (error)
 	{
-		checkOnlinePlayer(player)
-			.then( (onlineUser) =>
-			{
-				console.log(onlineUser);
-			} )
-			.catch( (e) =>
-			{
-				console.log(e.message);
-			} )
-	} )
-	.catch( (e) =>
+		console.log(error.message);
+	}
+}
+
+// PART 4
+// ------------------------------------------------------------
+
+const	getOnlinePlayers = async (players) =>
+{
+	try
+	{
+		let	get_players = [];
+
+		for ( let i = 0; i < players.length; i++ )
+		{
+			get_players[i] = await getPlayer(players[i].username);
+		}
+
+		const	online_players = get_players.filter( ({online}) => online);
+
+		return (online_players);
+	}
+	catch(e)
 	{
 		console.log(e.message);
-	} )
+	}
+}
+
+const	online_players = await getOnlinePlayers(players);
+const	names = online_players.map( ({username}) => username );
+console.log(names);
+console.log("----------------------------------------------------");
+
+// PART 5
+// ------------------------------------------------------------
+
+const	processPlayers = async (players) =>
+{
+	try
+	{
+		const	online_players = await getOnlinePlayers(players);
+
+		const	new_players = online_players.map( (player) =>
+		{
+			return {
+				...player,
+				score: player.score + 500
+			};
+
+		} );
+
+		return new_players;
+	}
+	catch(e)
+	{
+		console.log(e.message)
+	}
+}
+
+const	process_players = await processPlayers(players);
+console.log(process_players);
+console.log("----------------------------------------------------");
+
+// PART 6
+// ------------------------------------------------------------
+async function	main()
+{
+	try
+	{
+		await processPlayer("Houda");
+
+		console.log("********************************");
+
+		const	process_Players = await processPlayers(players);
+		console.log(process_Players);
+	}
+	catch(e)
+	{
+		console.log(e.message);
+	}
+}
+
+await main();
+console.log("----------------------------------------------------");
