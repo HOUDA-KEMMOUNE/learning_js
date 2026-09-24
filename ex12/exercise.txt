@@ -1,0 +1,179 @@
+Exercise 1 — Change text
+
+HTML:
+    <h1 id="title">Hello World</h1>
+
+Write JavaScript that changes the text to:
+    Hello Houda!
+
+Use:
+    -> querySelector()
+    -> textContent
+
+_____________________________________________________________________________________________
+
+Exercise 2 — Button + event
+
+HTML:
+    <h1 id="title">Hello</h1>
+    <button id="btn">Change title</button>
+
+When the button is clicked, change:
+    Hello
+
+to:
+    Welcome to JavaScript!
+
+Use:
+    querySelector()
+    addEventListener()
+    callback
+    textContent
+
+_____________________________________________________________________________________________
+
+Exercise 3 — Counter
+
+Create:
+    <h1 id="counter">0</h1>
+    <button id="increment">+</button>
+    <button id="decrement">-</button>
+
+Make the buttons work.
+
+Expected:
+    0
+
+    [ + ] [ - ]
+
+Click +:
+    1
+
+Click +:
+    2
+
+Click -:
+    1
+
+Hint
+
+You'll need a JavaScript variable:
+    let count = 0;
+
+and update:
+    counter.textContent = count;
+
+_____________________________________________________________________________________________
+
+Exercise 4 — Input
+
+HTML:
+    <input id="username" type="text">
+    <button id="btn">Submit</button>
+    <p id="result"></p>
+
+When the user enters:
+    Houda
+
+and clicks Submit, display:
+    Hello Houda!
+
+You'll need:
+    input.value
+
+and:
+    result.textContent
+
+_____________________________________________________________________________________________
+
+Exercise 5 — Player list
+
+Now let's combine your objects + arrays + DOM + callbacks.
+
+Given:
+    const players = [
+        {
+            username: "Houda",
+            score: 2000,
+            online: true
+        },
+        {
+            username: "Ali",
+            score: 1500,
+            online: false
+        },
+        {
+            username: "Sara",
+            score: 1800,
+            online: true
+        }
+    ];
+
+HTML:
+    <h1>Players</h1>
+    <div id="players"></div>
+
+Your job:
+
+Step 1
+Select:
+    <div id="players">
+
+
+Step 2
+    Use .forEach() or .map() to go through the players.
+
+Step 3
+For every player, create:
+    <p>Houda - 2000</p>
+    <p>Ali - 1500</p>
+    <p>Sara - 1800</p>
+
+and add them to the page.
+
+_____________________________________________________________________________________________
+
+Exercise 6 — 🔥 Your first mini-project
+
+Build a tiny player dashboard.
+
+HTML should have:
+    -> Player name input
+    -> Score input
+    -> [ Add Player ]
+
+    Players:
+    ----------------
+    Houda - 2000
+    Ali - 1500
+    Sara - 1800
+
+When the user enters:
+    Username: Youssef
+    Score: 2200
+
+and clicks:
+    Add Player
+
+the page should become:
+    Houda - 2000
+    Ali - 1500
+    Sara - 1800
+    Youssef - 2200
+
+Store the players in:
+    const players = [];
+
+Then when the button is clicked:
+    read input
+       ↓
+    create object
+       ↓
+    push object into players
+       ↓
+    update DOM
+
+This one exercise combines objects + arrays + functions + callbacks + events + DOM.
+
+_____________________________________________________________________________________________
+
