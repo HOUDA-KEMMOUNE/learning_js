@@ -1,0 +1,138 @@
+I want you to combine almost everything you've learned so far.
+
+Use this API:
+    https://jsonplaceholder.typicode.com/users
+
+You can put it directly into fetch().
+
+Goal
+
+Write:
+    async function main() {
+        // your code
+    }
+
+main();
+
+Your program should:
+
+____________________________________________________________________________________
+
+
+1. Fetch the users
+
+Use:
+    -> fetch()
+    -> await
+    -> try/catch
+
+____________________________________________________________________________________
+
+
+2. Convert the response to JSON
+
+Remember:
+
+response.json()
+
+also returns a Promise.
+
+____________________________________________________________________________________
+
+
+3. Display all usernames
+
+Use .map().
+
+For example, you should eventually get something like:
+    -> Bret
+    -> Antonette
+    -> Samantha
+    -> Karianne
+    -> ...
+
+____________________________________________________________________________________
+
+
+4. Create a function
+
+Create:
+    const getUserById = (users, id) => {
+        // ...
+    };
+
+It should return the user with that ID.
+
+Use .find().
+
+____________________________________________________________________________________
+
+
+5. Create another function
+
+Create:
+    const getUsernames = (users) => {
+        // ...
+    };
+
+Use .map() and destructuring.
+
+____________________________________________________________________________________
+
+
+6. Create an async function that gets one user from the API
+
+Something like:
+    const getUser = async (id) => {
+        // fetch...
+    };
+
+It should:
+    fetch
+     ↓
+    await
+     ↓
+    response
+     ↓
+    response.json()
+     ↓
+    return user
+
+Important: remember the return lesson from your processPlayer() problem. 😉
+
+____________________________________________________________________________________
+
+
+7. Final challenge
+
+Fetch three different users at the same time using:
+
+Promise.all()
+
+For example:
+    user 1
+    user 5
+    user 8
+
+Then print:
+    User 1: ...
+    User 5: ...
+    User 8: ...
+
+Rules for the exercise
+
+Try to use only concepts you've learned:
+    -> objects
+    -> arrays
+    -> functions
+    -> arrow functions
+    -> destructuring
+    -> .map()
+    -> .filter()
+    -> .find()
+    -> callbacks
+    -> Promises
+    -> async/await
+    -> try/catch
+    -> fetch()
+    -> Promise.all()
